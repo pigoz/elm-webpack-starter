@@ -32,7 +32,10 @@ var commonConfig = {
       template: 'src/index.html',
       inject:   'body',
       filename: 'index.html'
-    })
+    }),
+
+    // extract CSS into a separate file
+    new ExtractTextPlugin( './[hash].css', { allChunks: true } ),
   ],
 
   postcss: [ autoprefixer( { browsers: ['last 2 versions'] } ) ],
@@ -64,12 +67,9 @@ if ( TARGET_ENV === 'development' ) {
         },
         {
           test: /\.(css|scss)$/,
-          loaders: [
-            'style-loader',
-            'css-loader',
-            'postcss-loader',
-            'sass-loader'
-          ]
+          loader: ExtractTextPlugin.extract(
+            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+          )
         }
       ]
     }

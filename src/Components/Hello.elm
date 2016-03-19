@@ -5,7 +5,7 @@ import Html.Attributes exposing (..)
 import String
 
 -- hello component
-hello model =
+hello model styles =
   div
-    [ class "mt-h2" ]
+    [ class styles.home.counter ]
     [ text ( "Hello, World" ++ ( "!" |> String.repeat model ) ) ]
