@@ -45,7 +45,7 @@ var commonConfig = {
 // additional webpack settings for local env (when invoked by 'npm start')
 if ( TARGET_ENV === 'development' ) {
   console.log( 'Serving locally...');
-
+  var cssModulesElm = path.join(__dirname, './css-modules-elm-loader.js');
   module.exports = merge( commonConfig, {
 
     entry: [
@@ -67,9 +67,10 @@ if ( TARGET_ENV === 'development' ) {
         },
         {
           test: /\.(css|scss)$/,
-          loader: ExtractTextPlugin.extract(
-            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-          )
+          loader:
+            ExtractTextPlugin.extract(
+              'css-loader?modules&importLoaders=1!'+cssModulesElm)
+              // 'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]___[hash:base64:5]!'+cssModulesElm)
         }
       ]
     }

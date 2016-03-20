@@ -3,9 +3,10 @@ module Components.Hello where
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import String
+import Styles.App exposing (counterCls)
 
 -- hello component
-hello model styles =
+hello model =
   div
-    [ class styles.home.counter ]
+    [ class counterCls ]
     [ text ( "Hello, World" ++ ( "!" |> String.repeat model ) ) ]

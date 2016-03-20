@@ -2,9 +2,9 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing ( onClick )
 import Effects exposing (Effects)
-import Styles
 import StartApp
 
+import Styles.App exposing (wrapperCls, titleCls, imageCls)
 import Components.Hello exposing ( hello )
 
 type Action
@@ -24,7 +24,6 @@ main = app.html
 
 -- HOT-SWAPPING
 port swap : Signal.Signal Bool
-port styles : Styles.Styles
 
 type alias Model = Int
 
@@ -39,12 +38,12 @@ init =
 -- 2b) styling using inline style attribute (two variants)
 view address model =
   div
-    [ class styles.home.wrapper ]
-    [  hello model styles
-    ,  p [ class styles.home.title ] [ text ( "Elm Webpack Starter" ) ]
+    [ class wrapperCls ]
+    [  hello model
+    ,  p [ class titleCls ] [ text ( "Elm Webpack Starter" ) ]
     ,  button [ onClick address Increment ] [ text "+1" ]
     ,  button [ onClick address Decrement ] [ text "-1" ]
-    ,  img [ src "img/elm.jpg", class styles.home.image ] []
+    ,  img [ src "img/elm.jpg", class imageCls ] []
     ]
 
 update action model =

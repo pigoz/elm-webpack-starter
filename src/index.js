@@ -1,6 +1,4 @@
-const home = require('./styles/app.css');
-const styles = { home };
-const Elm = require('./Main');
+require('./css/app.css');
 
-const state = { styles, swap: false };
-const app = Elm.embed(Elm.Main, document.getElementById('main'), state);
+var Elm = require('./Main');
+Elm.embed(Elm.Main, document.getElementById('main'), { swap: false });
